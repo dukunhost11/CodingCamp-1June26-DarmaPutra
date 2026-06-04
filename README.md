@@ -2,7 +2,7 @@
 
 A clean, minimal personal dashboard to help you organize your day — right from your browser. Built with pure HTML, CSS, and Vanilla JavaScript. No frameworks, no backend, no fuss.
 
-> 🌐 **Live Demo:** [View on GitHub Pages](https://github.com/dukunhost11/CodingCamp-1June26-DarmaPutra)
+> 🌐 **Live Demo:** [View on GitHub Pages](https://dukunhost11.github.io/CodingCamp-1June26-DarmaPutra/)
 
 ---
 
