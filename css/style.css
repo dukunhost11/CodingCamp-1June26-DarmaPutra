@@ -1,0 +1,958 @@
+/* ============================================================
+   To-Do Life Dashboard — css/style.css
+   Modern · Elegant · Responsive · User-Friendly
+   ============================================================ */
+
+/* ============================================================
+   1. DESIGN TOKENS — Light Mode
+   ============================================================ */
+[data-theme="light"] {
+  /* === Backgrounds === */
+  --bg-page:        #f4f6fb;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #f9fafc;
+  --bg-glass:       rgba(255, 255, 255, 0.85);
+
+  /* === Text === */
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+  --text-inverse:   #ffffff;
+
+  /* === Brand / Accent === */
+  --accent:         #6366f1;
+  --accent-hover:   #4f46e5;
+  --accent-light:   #eef2ff;
+  --accent-ring:    rgba(99, 102, 241, 0.25);
+
+  /* === Semantic === */
+  --color-success:  #22c55e;
+  --color-success-dark: #16a34a;
+  --color-warning:  #f59e0b;
+  --color-warning-dark: #d97706;
+  --color-danger:   #ef4444;
+  --color-danger-dark: #dc2626;
+  --color-danger-bg: #fef2f2;
+  --color-info:     #38bdf8;
+  --color-info-bg:  #f0f9ff;
+
+  /* === Borders === */
+  --border:         #e2e8f0;
+  --border-focus:   #6366f1;
+  --border-strong:  #cbd5e1;
+
+  /* === Shadows === */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-glow: 0 0 0 3px rgba(99,102,241,0.20);
+
+  /* === Widget accent colours === */
+  --widget-greeting: #6366f1;
+  --widget-timer:    #0ea5e9;
+  --widget-todo:     #8b5cf6;
+  --widget-links:    #10b981;
+
+  /* === Spacing === */
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;   --sp-3: 0.75rem;
+  --sp-4: 1rem;     --sp-5: 1.25rem;  --sp-6: 1.5rem;
+  --sp-8: 2rem;     --sp-10: 2.5rem;
+
+  /* === Radius === */
+  --r-sm: 8px;   --r-md: 12px;   --r-lg: 16px;   --r-xl: 20px;
+
+  /* === Transition === */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 150ms;
+  --t-base: 220ms;
+  --t-slow: 300ms;
+}
+
+/* ============================================================
+   2. DESIGN TOKENS — Dark Mode
+   ============================================================ */
+[data-theme="dark"] {
+  --bg-page:        #0d0f18;
+  --bg-surface:     #161926;
+  --bg-elevated:    #1c2033;
+  --bg-glass:       rgba(22, 25, 38, 0.90);
+
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+  --text-inverse:   #0f172a;
+
+  --accent:         #818cf8;
+  --accent-hover:   #a5b4fc;
+  --accent-light:   #1e1b4b;
+  --accent-ring:    rgba(129, 140, 248, 0.25);
+
+  --color-success:  #4ade80;
+  --color-success-dark: #22c55e;
+  --color-warning:  #fbbf24;
+  --color-warning-dark: #f59e0b;
+  --color-danger:   #f87171;
+  --color-danger-dark: #ef4444;
+  --color-danger-bg: #1c0a0a;
+  --color-info:     #7dd3fc;
+  --color-info-bg:  #0c1e30;
+
+  --border:         #252840;
+  --border-focus:   #818cf8;
+  --border-strong:  #2e3150;
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.30);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.25);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.30);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.35);
+  --shadow-glow: 0 0 0 3px rgba(129,140,248,0.20);
+
+  --widget-greeting: #818cf8;
+  --widget-timer:    #38bdf8;
+  --widget-todo:     #a78bfa;
+  --widget-links:    #34d399;
+
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;   --sp-3: 0.75rem;
+  --sp-4: 1rem;     --sp-5: 1.25rem;  --sp-6: 1.5rem;
+  --sp-8: 2rem;     --sp-10: 2.5rem;
+
+  --r-sm: 8px;   --r-md: 12px;   --r-lg: 16px;   --r-xl: 20px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 150ms;
+  --t-base: 220ms;
+  --t-slow: 300ms;
+}
+
+/* ============================================================
+   3. RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  transition: background-color var(--t-slow) var(--ease-in-out),
+              color var(--t-slow) var(--ease-in-out);
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Subtle animated gradient background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(16,185,129,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(129,140,248,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(52,211,153,0.08) 0%, transparent 60%);
+}
+
+/* ============================================================
+   4. TYPOGRAPHY
+   ============================================================ */
+h1, h2, h3, h4 {
+  color: var(--text-primary);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease-in-out);
+}
+a:hover, a:focus-visible {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* Global smooth transitions for interactive elements */
+button, input, select, textarea {
+  font-family: inherit;
+  transition:
+    background-color var(--t-fast) var(--ease-in-out),
+    border-color var(--t-fast) var(--ease-in-out),
+    box-shadow var(--t-fast) var(--ease-in-out),
+    color var(--t-fast) var(--ease-in-out),
+    transform var(--t-fast) var(--ease-out),
+    opacity var(--t-fast) var(--ease-in-out);
+}
+
+/* ============================================================
+   5. SCROLLBAR (webkit)
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ============================================================
+   6. HEADER
+   ============================================================ */
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-6);
+  background-color: var(--bg-glass);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Brand mark */
+.dashboard-header::before {
+  content: "✦ Life Dashboard";
+  font-size: 0.9375rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent), var(--widget-links));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+/* Theme toggle */
+#theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+#theme-toggle::before {
+  content: "☀️";
+  font-size: 0.9375rem;
+}
+[data-theme="dark"] #theme-toggle::before { content: "🌙"; }
+#theme-toggle:hover, #theme-toggle:focus-visible {
+  background: var(--accent);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+#theme-toggle:active { transform: translateY(0); }
+
+/* ============================================================
+   7. GRID LAYOUT
+   ============================================================ */
+main.dashboard-grid {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-4);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+  align-items: start;
+}
+
+/* 2-col: tablets */
+@media (min-width: 640px) {
+  main.dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: var(--sp-6) var(--sp-5);
+    gap: var(--sp-5);
+  }
+}
+
+/* 3-col: small desktop */
+@media (min-width: 1024px) {
+  main.dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-6);
+    padding: var(--sp-8) var(--sp-6);
+  }
+}
+
+/* 4-col: wide desktop */
+@media (min-width: 1280px) {
+  main.dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-6);
+    padding: var(--sp-8);
+  }
+}
+
+/* Extra padding on very wide screens */
+@media (min-width: 1600px) {
+  main.dashboard-grid {
+    padding: var(--sp-10);
+    gap: 2rem;
+  }
+}
+
+/* ============================================================
+   8. WIDGET CARD
+   ============================================================ */
+.widget {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  /* Entrance animation */
+  animation: widget-in 400ms var(--ease-out) both;
+}
+
+@keyframes widget-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Stagger each widget card */
+.widget:nth-child(1) { animation-delay: 0ms; }
+.widget:nth-child(2) { animation-delay: 60ms; }
+.widget:nth-child(3) { animation-delay: 120ms; }
+.widget:nth-child(4) { animation-delay: 180ms; }
+
+/* Hover lift */
+.widget:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  transition: box-shadow var(--t-base) var(--ease-out),
+              transform var(--t-base) var(--ease-out);
+}
+
+/* Coloured left accent bar */
+.widget::before {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg,
+    var(--widget-color, var(--accent)) 0%,
+    color-mix(in srgb, var(--widget-color, var(--accent)) 60%, transparent) 100%
+  );
+  flex-shrink: 0;
+}
+
+/* Widget inner padding container */
+.widget > *:not(:first-child) {
+  /* All direct children except ::before get padding */
+}
+
+/* Since HTML doesn't use .widget-body, apply padding directly */
+#greeting-widget,
+#timer-widget,
+#todo-widget,
+#links-widget {
+  padding-bottom: var(--sp-5);
+}
+
+/* Widget section title (overline style) */
+.widget-label {
+  display: block;
+  padding: var(--sp-4) var(--sp-5) 0;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-1);
+}
+
+/* ============================================================
+   9. OVERFLOW PROTECTION
+   ============================================================ */
+img, video, iframe, table { max-width: 100%; }
+a, input, p, li, div {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ============================================================
+   10. GREETING WIDGET
+   ============================================================ */
+#greeting-widget { --widget-color: var(--widget-greeting); }
+
+#greeting-widget #greeting-time {
+  display: block;
+  padding: var(--sp-5) var(--sp-5) 0;
+  font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  line-height: 1;
+  background: linear-gradient(135deg, var(--text-primary) 60%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#greeting-widget #greeting-date {
+  display: block;
+  padding: var(--sp-2) var(--sp-5) 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+#greeting-widget #greeting-message {
+  display: block;
+  padding: var(--sp-3) var(--sp-5) 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+/* Name form */
+#greeting-widget .greeting-name-form {
+  margin: var(--sp-4) var(--sp-5) 0;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.greeting-name-form label {
+  width: 100%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   11. TIMER WIDGET
+   ============================================================ */
+#timer-widget { --widget-color: var(--widget-timer); }
+
+#timer-widget #timer-display {
+  display: block;
+  margin: var(--sp-5) var(--sp-5) 0;
+  padding: var(--sp-5) var(--sp-4);
+  font-size: clamp(2.5rem, 7vw, 3.75rem);
+  font-weight: 900;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  line-height: 1;
+}
+
+#timer-widget .timer-controls {
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-5) 0;
+}
+
+/* Per-button colours */
+#timer-start {
+  flex: 1;
+  background: var(--color-success) !important;
+}
+#timer-start:hover:not(:disabled) { background: var(--color-success-dark) !important; }
+
+#timer-stop {
+  flex: 1;
+  background: var(--color-warning) !important;
+  color: #1a1a1a !important;
+}
+#timer-stop:hover:not(:disabled) { background: var(--color-warning-dark) !important; }
+
+#timer-reset {
+  flex: 1;
+  background: var(--bg-elevated) !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--border-strong) !important;
+}
+#timer-reset:hover:not(:disabled) {
+  background: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Duration form */
+#timer-widget .timer-duration-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  margin: var(--sp-3) var(--sp-5) 0;
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
+}
+
+#timer-widget .timer-duration-form label {
+  width: 100%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   12. TODO WIDGET
+   ============================================================ */
+#todo-widget { --widget-color: var(--widget-todo); }
+
+#todo-widget .todo-add-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-5) 0;
+}
+
+#todo-widget .todo-add-form label {
+  width: 100%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+#todo-list {
+  list-style: none;
+  margin: var(--sp-3) var(--sp-3) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+/* Empty state */
+#todo-list:empty::after {
+  content: "✓  No tasks yet — add one above";
+  display: block;
+  padding: var(--sp-8) var(--sp-4);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-3);
+  border-radius: var(--r-md);
+  flex-wrap: wrap;
+  background: transparent;
+  transition: background var(--t-fast) var(--ease-in-out);
+}
+.todo-item:hover { background: var(--bg-elevated); }
+
+.todo-item input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  accent-color: var(--accent);
+  border-radius: 4px;
+}
+
+.todo-item__title {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+/* Completed */
+.todo-item__title--completed,
+.todo-item--completed .todo-item__title {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+.todo-item__edit-input {
+  flex: 1;
+  min-width: 8rem;
+  font-size: 0.9375rem;
+}
+
+.todo-item__error {
+  width: 100%;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-danger);
+  padding-left: calc(1.1rem + var(--sp-3));
+  margin-top: -var(--sp-1);
+}
+
+/* ============================================================
+   13. LINKS WIDGET
+   ============================================================ */
+#links-widget { --widget-color: var(--widget-links); }
+
+#links-widget .links-add-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-5) 0;
+}
+
+#links-widget .links-add-form label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+#links-list {
+  list-style: none;
+  margin: var(--sp-3) var(--sp-3) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* Empty state */
+#links-list:empty::after {
+  content: "🔗  No links yet — add one above";
+  display: block;
+  padding: var(--sp-8) var(--sp-4);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.links-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-md);
+  transition: background var(--t-fast) var(--ease-in-out);
+}
+.links-item:hover { background: var(--bg-elevated); }
+
+.links-item__anchor {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex: 1;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--accent);
+  overflow-wrap: break-word;
+  word-break: break-all;
+  line-height: 1.35;
+}
+.links-item__anchor::before {
+  content: "↗";
+  font-size: 0.875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.links-item__anchor:hover,
+.links-item__anchor:focus-visible {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   14. INPUTS — Global widget style
+   ============================================================ */
+.widget input[type="text"],
+.widget input[type="number"],
+.widget input[type="url"] {
+  flex: 1;
+  min-width: 0;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--t-fast) var(--ease-in-out),
+    box-shadow var(--t-fast) var(--ease-in-out);
+}
+
+.widget input::placeholder { color: var(--text-muted); }
+
+.widget input:hover:not(:focus) {
+  border-color: var(--border-strong);
+}
+
+.widget input:focus,
+.widget input:focus-visible {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+/* ============================================================
+   15. BUTTONS — Global widget style
+   ============================================================ */
+.widget button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid transparent;
+  border-radius: var(--r-sm);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-xs);
+  letter-spacing: 0.01em;
+}
+
+.widget button:hover:not(:disabled),
+.widget button:focus-visible:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.widget button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.widget button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Delete buttons (outlined danger) --- */
+.todo-item__delete-btn,
+.links-item__delete-btn {
+  background: transparent !important;
+  color: var(--color-danger) !important;
+  border: 1.5px solid var(--color-danger) !important;
+  font-size: 0.8125rem !important;
+  padding: var(--sp-1) var(--sp-2) !important;
+  border-radius: var(--r-sm) !important;
+  box-shadow: none !important;
+}
+.todo-item__delete-btn:hover:not(:disabled),
+.links-item__delete-btn:hover:not(:disabled) {
+  background: var(--color-danger) !important;
+  color: #fff !important;
+  transform: none !important;
+}
+
+/* --- Edit button (outlined accent) --- */
+.todo-item__edit-btn {
+  background: transparent !important;
+  color: var(--accent) !important;
+  border: 1.5px solid var(--accent) !important;
+  font-size: 0.8125rem !important;
+  padding: var(--sp-1) var(--sp-2) !important;
+  box-shadow: none !important;
+}
+.todo-item__edit-btn:hover:not(:disabled) {
+  background: var(--accent) !important;
+  color: #fff !important;
+  transform: none !important;
+}
+
+/* --- Save button (solid success) --- */
+.todo-item__save-btn {
+  background: var(--color-success) !important;
+  color: #fff !important;
+  font-size: 0.8125rem !important;
+  padding: var(--sp-1) var(--sp-2) !important;
+}
+.todo-item__save-btn:hover:not(:disabled) {
+  background: var(--color-success-dark) !important;
+  transform: none !important;
+}
+
+/* --- Cancel button (subtle) --- */
+.todo-item__cancel-btn {
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  border: 1.5px solid var(--border-strong) !important;
+  font-size: 0.8125rem !important;
+  padding: var(--sp-1) var(--sp-2) !important;
+  box-shadow: none !important;
+}
+.todo-item__cancel-btn:hover:not(:disabled) {
+  background: var(--border-strong) !important;
+  color: var(--text-primary) !important;
+  transform: none !important;
+}
+
+/* ============================================================
+   16. NOTIFICATIONS
+   ============================================================ */
+#notification-container {
+  position: fixed;
+  top: 4.5rem;
+  right: var(--sp-4);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  width: min(360px, calc(100vw - 2rem));
+  pointer-events: none;
+}
+
+.notification {
+  pointer-events: all;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.45;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-lg);
+  animation: notif-in 280ms var(--ease-out) both;
+}
+
+@keyframes notif-in {
+  from { opacity: 0; transform: translateX(1.5rem) scale(0.95); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.notification--error {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.notification--info {
+  background: var(--color-info-bg);
+  border-color: var(--color-info);
+  color: var(--color-info);
+}
+
+/* ============================================================
+   17. VALIDATION ERRORS (inline)
+   ============================================================ */
+[role="alert"] {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  min-height: 1em;
+  color: var(--color-danger);
+}
+[role="alert"]:empty { display: none; }
+
+/* ============================================================
+   18. MOBILE TWEAKS (≤ 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .dashboard-header {
+    padding: var(--sp-3) var(--sp-4);
+  }
+  .dashboard-header::before {
+    font-size: 0.875rem;
+  }
+  #theme-toggle {
+    padding: var(--sp-2) var(--sp-3);
+    font-size: 0.75rem;
+  }
+  #greeting-widget #greeting-time {
+    font-size: 2.25rem;
+  }
+  #timer-widget #timer-display {
+    font-size: 2.75rem;
+  }
+  .timer-controls {
+    gap: var(--sp-1);
+  }
+  .widget button {
+    padding: var(--sp-2) var(--sp-3);
+    font-size: 0.8125rem;
+  }
+}
+
+/* ============================================================
+   19. PRINT — hide chrome, keep content readable
+   ============================================================ */
+@media print {
+  .dashboard-header,
+  #notification-container,
+  .widget button,
+  .greeting-name-form,
+  .timer-controls,
+  .timer-duration-form,
+  .todo-add-form,
+  .links-add-form { display: none !important; }
+
+  body { background: white; color: black; }
+  .widget { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+}
