@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do Life Dashboard</title>
+    <!-- Inter font for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!--
+      Inline theme bootstrap — runs synchronously before the first paint so
+      no content is ever rendered under the wrong colour scheme (Req 7.4).
+      Reads localStorage directly (bypassing StorageService which needs the
+      full JS module to load).
+    -->
+    <script>
+      (function () {
+        var stored;
+        try { stored = localStorage.getItem('tld:theme'); } catch (_) {}
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.dataset.theme = stored;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.dataset.theme = 'dark';
+        } else {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Theme Toggle -->
+    <header class="dashboard-header">
+      <button id="theme-toggle" type="button" aria-label="Toggle light/dark theme">
+        Toggle Theme
+      </button>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <main class="dashboard-grid">
+
+      <!-- Greeting Widget -->
+      <section id="greeting-widget" class="widget" aria-label="Greeting">
+        <span class="widget-label">🕐 Good Time</span>
+        <div id="greeting-time" aria-live="polite"></div>
+        <div id="greeting-date"></div>
+        <div id="greeting-message" aria-live="polite"></div>
+        <div class="greeting-name-form">
+          <label for="greeting-name-input">Your name:</label>
+          <input
+            type="text"
+            id="greeting-name-input"
+            maxlength="50"
+            placeholder="Enter your name"
+            autocomplete="off"
+          />
+          <button type="button" id="greeting-name-save">Save</button>
+          <div id="greeting-name-error" role="alert" aria-live="assertive"></div>
+        </div>
+      </section>
+
+      <!-- Timer Widget -->
+      <section id="timer-widget" class="widget" aria-label="Focus Timer">
+        <span class="widget-label">⏱ Focus Timer</span>
+        <div id="timer-display" aria-live="polite">25:00</div>
+        <div class="timer-controls">
+          <button type="button" id="timer-start">Start</button>
+          <button type="button" id="timer-stop">Stop</button>
+          <button type="button" id="timer-reset">Reset</button>
+        </div>
+        <div class="timer-duration-form">
+          <label for="timer-duration-input">Duration (minutes):</label>
+          <input
+            type="number"
+            id="timer-duration-input"
+            min="1"
+            max="120"
+            placeholder="25"
+          />
+          <button type="button" id="timer-duration-save">Set</button>
+          <div id="timer-duration-error" role="alert" aria-live="assertive"></div>
+        </div>
+        <div id="timer-complete-notification" aria-live="assertive"></div>
+      </section>
+
+      <!-- Todo Widget -->
+      <section id="todo-widget" class="widget" aria-label="To-Do List">
+        <span class="widget-label">✅ Task List</span>
+        <div class="todo-add-form">
+          <label for="todo-input">New task:</label>
+          <input
+            type="text"
+            id="todo-input"
+            maxlength="100"
+            placeholder="Enter a task title"
+            autocomplete="off"
+          />
+          <button type="button" id="todo-add">Add</button>
+          <div id="todo-input-error" role="alert" aria-live="assertive"></div>
+        </div>
+        <ul id="todo-list" aria-label="Task list"></ul>
+      </section>
+
+      <!-- Links Widget -->
+      <section id="links-widget" class="widget" aria-label="Quick Links">
+        <span class="widget-label">🔗 Quick Links</span>
+        <div class="links-add-form">
+          <label for="links-label-input">Label:</label>
+          <input
+            type="text"
+            id="links-label-input"
+            maxlength="100"
+            placeholder="Link label"
+            autocomplete="off"
+          />
+          <label for="links-url-input">URL:</label>
+          <input
+            type="url"
+            id="links-url-input"
+            maxlength="2048"
+            placeholder="https://example.com"
+            autocomplete="off"
+          />
+          <button type="button" id="links-add">Add Link</button>
+          <div id="links-error" role="alert" aria-live="assertive"></div>
+        </div>
+        <ul id="links-list" aria-label="Quick links list"></ul>
+      </section>
+
+    </main>
+
+    <!-- Notification container — populated dynamically by NotificationService -->
+    <div id="notification-container" aria-live="assertive" aria-atomic="true"></div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
