@@ -41,11 +41,22 @@ A clean, minimal personal dashboard to help you organize your day — right from
 
 ---
 
-## 🖥️ Preview
+## 🖥️ Preview Desktop Mode
 
 | Dark Mode | Light Mode |
 |-----------|------------|
 | ![Dark](https://files.catbox.moe/ltn6ff.png) | ![Light](https://files.catbox.moe/0kaz7p.png) |
+
+
+
+---
+
+
+## 📱 Preview Mobile Mode
+
+| Dark Mode | Light Mode |
+|-----------|------------|
+| ![Dark](https://files.catbox.moe/7antfl.jpeg) | ![Light](https://files.catbox.moe/l33mb6.jpeg) |
 
 
 
