@@ -45,9 +45,9 @@ A clean, minimal personal dashboard to help you organize your day — right from
 
 | Dark Mode | Light Mode |
 |-----------|------------|
-| ![Dark](screenshots/dark.png) | ![Light](screenshots/light.png) |
+| ![Dark](https://files.catbox.moe/ltn6ff.png) | ![Light](https://files.catbox.moe/0kaz7p.png) |
 
-> 💡 Add your own screenshots to a `screenshots/` folder after deployment.
+
 
 ---
 
