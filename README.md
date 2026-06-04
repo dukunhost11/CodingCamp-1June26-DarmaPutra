@@ -125,7 +125,7 @@ CodingCamp-1June26-DarmaPutra/
 
 ## 👤 Author
 
-**[Your Name]**
+**[I Putu Darma Putra]**
 - GitHub: [@dukunhost11](https://github.com/dukunhost11)
 
 ---
